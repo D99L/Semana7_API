@@ -101,7 +101,46 @@
             
         </div>
     </div>
-</section>     
+</section>
+<section class="compsyper mt-5 mb-5">
+    <div class="container">
+        <h2>Información Externa (Consumo API REST) &#127760;</h2>
+        <div id="api-content" class="row">
+            <p>Cargando información desde servicio web público...</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Consumir API pública
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(data => {
+                const apiContent = document.getElementById('api-content');
+                apiContent.innerHTML = '';
+                
+                data.slice(0, 3).forEach(user => {
+                    const userCard = `
+                        <div class="col-md-4">
+                            <div class="card mb-3" style="background-color: #222; color: #fff;">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: #00d2ff;">${user.name}</h5>
+                                    <p class="card-text">Email: ${user.email}</p>
+                                    <p class="card-text">Empresa: ${user.company.name}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    apiContent.innerHTML += userCard;
+                });
+            })
+            .catch(error => {
+                console.error('Error al consumir la API:', error);
+                document.getElementById('api-content').innerHTML = '<p style="color:red;">Error al cargar la información.</p>';
+            });
+    });
+</script>
 {% endblock contenido %}
     
 
