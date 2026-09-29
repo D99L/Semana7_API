@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-from pathlib import Path, os
+from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-4u7p!0f@wyk991sme@u6m#+ua2w3g!x*h47#ubt3&8v5d!q_$l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'Inicio',
-    'rest_hsc',
     'rest_framework.authtoken',
+    'rest_api',
+    'Inicio',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +80,7 @@ WSGI_APPLICATION = 'Hsc.wsgi.application'
 REST_FRAMEWORK={
     'DEFAULT_AUTHENTICATION_CLASSES':[
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ]
 }
 
@@ -86,19 +88,14 @@ REST_FRAMEWORK={
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
-# usuario original : hsc
-# clave: 206712872
-
-#del cheka xd 
-# hscplus - 12345
 
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': '127.0.0.1:1521/xe',
-        'USER': 'proyecto1',
-        'PASSWORD': '206712872',
+        'USER': 'usuario',
+        'PASSWORD': 'usuario1',
         'TEST':{
             'USER': 'default_test',
             'TBLSPACE': 'default_test_tbls',
