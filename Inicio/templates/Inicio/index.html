@@ -17,18 +17,18 @@
 {% block contenido %}
 <section class="compsyper">
     <div class="container">
-        <h1 class="text-break">Acá podrás encontrar lo mejor para poder armar tu setup 	&#128293;</h1>
-        <h2>Periféricos para la bestia &#9889;</h2>
+        <h1 class="text-break">AcÃ¡ podrÃ¡s encontrar lo mejor para poder armar tu setup 	&#128293;</h1>
+        <h2>PerifÃ©ricos para la bestia &#9889;</h2>
         <div class="row align-items-center">
             <div class="col-xl-4 col-md-6 col-sm-12">
                 <article class="caja">
                     
                     {% if usuario %}
                         <a href="{% url 'mostrarMic' usuario.username %}"><img src="{% static 'Inicio/img/img-index/microfono.jpg' %}" alt="microfono gamer" class="img-fluid" id="img"></a>
-                        <p class="txtcaja">MICRÓFONOS</p>
+                        <p class="txtcaja">MICRÃ“FONOS</p>
                     {% else %}
                         <a href="{% url 'iniciar' %}"><img src="{% static 'Inicio/img/img-index/microfono.jpg' %}" alt="microfono gamer" class="img-fluid" id="img"></a>
-                        <p class="txtcaja">MICRÓFONOS</p>
+                        <p class="txtcaja">MICRÃ“FONOS</p>
                         
                     {% endif %}
                 </article>
@@ -69,10 +69,10 @@
                 <article class="caja">
                     {%if usuario %}
                         <a href="{% url 'mostrarGrafica' usuario.username  %}"><img src="{% static 'Inicio/img/img-index/grafica.png' %}" alt="tarjeta grafica" class="img-fluid" id="img"></a>
-                        <p class="txtcaja"> TARJETAS GRÁFICAS</p>
+                        <p class="txtcaja"> TARJETAS GRÃFICAS</p>
                     {%else%}
                         <a href="{% url 'iniciar' %}"><img src="{% static 'Inicio/img/img-index/grafica.png' %}" alt="tarjeta grafica" class="img-fluid" id="img"></a>
-                        <p class="txtcaja"> TARJETAS GRÁFICAS</p>
+                        <p class="txtcaja"> TARJETAS GRÃFICAS</p>
                     {%endif%}
                 </article>
             </div>
@@ -104,16 +104,16 @@
 </section>
 <section class="compsyper mt-5 mb-5">
     <div class="container">
-        <h2>Información Externa (Consumo API REST) &#127760;</h2>
+        <h2>InformaciÃ³n Externa (Consumo API REST) &#127760;</h2>
         <div id="api-content" class="row">
-            <p>Cargando información desde servicio web público...</p>
+            <p>Cargando informaciÃ³n desde servicio web pÃºblico...</p>
         </div>
     </div>
 </section>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Consumir API pública
+        // Consumir API pÃºblica
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => response.json())
             .then(data => {
@@ -137,11 +137,11 @@
             })
             .catch(error => {
                 console.error('Error al consumir la API:', error);
-                document.getElementById('api-content').innerHTML = '<p style="color:red;">Error al cargar la información.</p>';
+                document.getElementById('api-content').innerHTML = '<p style="color:red;">Error al cargar la informaciÃ³n.</p>';
             });
     });
 </script>
-{% endblock contenido %}
+<section class="compsyper mt-5 mb-5"><div class="container"><h2>Informacion Externa (Consumo API REST 2 - Noticias)</h2><div id="api2-content" class="row"><p>Cargando informacion desde segundo servicio web publico...</p></div></div></section><script>document.addEventListener("DOMContentLoaded", function() { fetch("https://jsonplaceholder.typicode.com/posts").then(response => response.json()).then(data => { const api2Content = document.getElementById("api2-content"); api2Content.innerHTML = ""; data.slice(0, 3).forEach(post => { const postCard = `<div class="col-md-4"><div class="card mb-3" style="background-color: #333; color: #fff; border: 1px solid #00d2ff;"><div class="card-body"><h5 class="card-title" style="color: #00d2ff; text-transform: capitalize;">${post.title.substring(0, 20)}...</h5><p class="card-text" style="font-size: 0.9em;">${post.body.substring(0, 80)}...</p></div></div></div>`; api2Content.innerHTML += postCard; }); }).catch(error => { console.error("Error al consumir la segunda API:", error); document.getElementById("api2-content").innerHTML = "<p style='color:red;'>Error al cargar la informacion de noticias.</p>"; }); });</script>{% endblock contenido %}
     
 
 
