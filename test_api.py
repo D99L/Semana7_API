@@ -1,4 +1,4 @@
-﻿import os
+import os
 import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Hsc.settings')
 django.setup()
@@ -35,9 +35,26 @@ res = client.post('/api/categorias/', {'nombreCat': 'Monitores'}, content_type='
 print(res.status_code)
 print(res.json())
 
+# Test Unauthorized GET
+print('--- GET /api/categorias/ (Unauthorized) ---')
+res_unauth = client.get('/api/categorias/')
+print(res_unauth.status_code)
+
 # Test GET detail
 print('--- GET /api/categorias/2/ ---')
-res = client.get(f'/api/categorias/{res.json()["idCategoria"]}/', **headers)
+cat_id = res.json()["idCategoria"]
+res = client.get(f'/api/categorias/{cat_id}/', **headers)
 print(res.status_code)
 print(res.json())
+
+# Test PUT detail
+print(f'--- PUT /api/categorias/{cat_id}/ ---')
+res = client.put(f'/api/categorias/{cat_id}/', {'nombreCat': 'Monitores Actualizado'}, content_type='application/json', **headers)
+print(res.status_code)
+print(res.json())
+
+# Test DELETE detail
+print(f'--- DELETE /api/categorias/{cat_id}/ ---')
+res = client.delete(f'/api/categorias/{cat_id}/', **headers)
+print(res.status_code)
 
